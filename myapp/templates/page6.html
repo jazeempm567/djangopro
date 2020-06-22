@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>page6</title>
+</head>
+<body>
+
+<form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+
+    <input type="text" name="name">
+    <input type="file" name="file">
+    <input type="submit">
+
+</form>
+
+
+<br>
+    {% for i in all_rows %}
+    <p>{{i.name}}</p>
+    <p>{{i.file}}</p>
+    <img src="/media/{{i.file}}">
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>page3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>page 3</h1><br>
+<button onclick="myFun()">Click here</button>
+<a href="{% url 'getdata' %}">link</a>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+    </tr>
+
+</table>
+<p id="demo"></p>
+<script>
+    function myFun(){
+    var a=[1,2,3];
+    a=JSON.stringify(a);
+
+    $.ajax({
+        url: "{% url 'getdata' %}",
+        type: "GET",
+        data:"data="+a,
+        cache: false,
+        success: function(response){
+            response=JSON.parse(response);
+            $("#demo").text(response.name);
+            <!--alert(response.age);-->
+            $("table").append("<tr><td>"+response.name+"</td><td>"+response.age+"</td></tr>")
+        }
+
+    });
+
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>page</title>
+
+    <style>
+    table{
+        border-collapse:collapse;
+    }
+
+    table,td{
+
+    border:1px solid black;
+    }
+
+    .row1{
+    background-color:red;
+    }
+
+    .row2{
+    background-color:green;
+    }
+
+    .row3{
+    background-color:yellow;
+    }
+    </style>
+
+</head>
+
+
+<body>
+
+AUTOESCAPE
+
+{% autoescape on %}
+{{a}}
+{% endautoescape %}
+
+<table>
+{% for o in some_list %}
+    <tr class="{% cycle 'row1' 'row2' 'row3' %}">
+        <td>{{o}}</td>
+        <td>{{ forloop.revcounter0 }}  {{forloop.first}} {{forloop.last	}}</td>
+    </tr>
+{% endfor %}
+</table>
+
+FILTER<br>
+{% filter force_escape|upper %}
+    This text will be HTML-escaped, and will appear in all lowercase.
+{% endfilter %}
+<br>
+
+{% firstof var1 var2 var3 "fallback value" %}
+
+for … empty
+<ul>
+{% for athlete in athlete_list %}
+    <li>{{ athlete.name }}</li>
+{% empty %}
+    <li>Sorry, no athletes in this list.</li>
+{% endfor %}
+</ul>
+
+
+
+{% if messages|length >= 100 %}
+   You have lots of messages today!
+{% endif %}
+
+{% include "page2.html" with name="sam" %}
+
+
+{% lorem %}<br>
+
+
+ {% now "SHORT_DATETIME_FORMAT" %} <br>
+
+
+
+{% now "Y-M-D" as current_year %}
+{{current_year}}
+</body>
+</html>

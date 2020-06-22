@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}page1{%endblock%}</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/style1.css">
+    <!--<script src="/static/js/ffil.js"></script>-->
+</head>
+<body>
+<h1>{{num}}</h1>
+<h1>Hello django</h1>
+<h3>{{data1}}</h3>
+<h3>{{data2.age}}</h3>
+
+{% for i in data1 %}
+<p>{{i}}</p>
+{% if i == 2 %}
+<p>value is 2</p>
+{% elif i == 3 %}
+<p>value is 3</p>
+{% else %}
+<p>some anothor value</p>
+{% endif %}
+{% endfor %}
+
+{% for student in data2 %}
+{{student.name}}
+{{student.age}}<br>
+{% endfor %}
+
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Height</th>
+    </tr>
+    {% for student in data2 %}
+    <tr>
+        <td>{{student.name}}</td>
+        <td>{{student.age}}</td>
+        <td>{{student.height}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% block image %}
+<img src="/static/images/Desert.jpg">
+{% endblock %}
+
+{% for i in object_list %}
+<p>{{i.name}}</p>
+<p>{{i.age}}</p>
+{% endfor %}
+
+</body>
+</html>
